@@ -1,9 +1,16 @@
+import { useEffect } from "react";
+
 export default function Home() {
+
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = "smooth";
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#F6F1EB]">
 
       {/* Navbar */}
-      <nav className="fixed top-0 left-0 w-full z-50 bg-[#F6F1EB] shadow-sm">
+      <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/70 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
           <h1 className="text-xl font-bold text-[#2E4057]">
             Dr. Maya Reynolds
@@ -22,12 +29,13 @@ export default function Home() {
       <section className="relative h-screen flex items-center justify-center text-center text-white pt-20">
         <img
           src="https://images.unsplash.com/photo-1493836512294-502baa1986e2"
+          alt="therapy"
           className="absolute inset-0 w-full h-full object-cover"
         />
 
         <div className="absolute inset-0 bg-[#2E4057]/70"></div>
 
-        <div className="relative z-10 max-w-2xl px-6">
+        <div className="relative z-10 max-w-2xl px-6 animate-fadeIn">
           <h1 className="text-5xl md:text-6xl font-bold leading-tight">
             Compassionate Therapy for Anxiety & Relationships
           </h1>
@@ -44,48 +52,45 @@ export default function Home() {
       </section>
 
       {/* Services */}
-      <section className="py-24 md:py-28 px-6 bg-[#F6F1EB]">
-        <div className="max-w-6xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#2E4057]">
-            How I Can Help
-          </h2>
+      <section className="py-24 md:py-28 px-6 bg-[#F6F1EB] text-center">
+        <h2 className="text-3xl md:text-4xl font-bold text-[#2E4057]">
+          How I Can Help
+        </h2>
 
-          <div className="grid md:grid-cols-3 gap-8 mt-12">
-            <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
+        <div className="grid md:grid-cols-3 gap-8 mt-12 max-w-6xl mx-auto">
+          {[
+            {
+              title: "Anxiety Therapy",
+              desc: "Learn to manage overwhelming thoughts and regain control of your life."
+            },
+            {
+              title: "Relationship Counseling",
+              desc: "Build stronger, healthier connections with better communication."
+            },
+            {
+              title: "Trauma Support",
+              desc: "Heal from past experiences in a safe and supportive environment."
+            }
+          ].map((item, i) => (
+            <div key={i} className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:-translate-y-2">
               <h3 className="text-xl font-semibold text-[#2E4057]">
-                Anxiety Therapy
+                {item.title}
               </h3>
               <p className="mt-3 text-gray-600 leading-relaxed text-[17px]">
-                Learn to manage overwhelming thoughts and regain control of your life.
+                {item.desc}
               </p>
             </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
-              <h3 className="text-xl font-semibold text-[#2E4057]">
-                Relationship Counseling
-              </h3>
-              <p className="mt-3 text-gray-600 leading-relaxed text-[17px]">
-                Build stronger, healthier connections with better communication.
-              </p>
-            </div>
-
-            <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300">
-              <h3 className="text-xl font-semibold text-[#2E4057]">
-                Trauma Support
-              </h3>
-              <p className="mt-3 text-gray-600 leading-relaxed text-[17px]">
-                Heal from past experiences in a safe and supportive environment.
-              </p>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
       {/* About */}
       <section className="py-24 md:py-28 px-6 bg-white">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+
           <img
             src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e"
+            alt="therapist"
             className="rounded-2xl h-[420px] w-full object-cover shadow-md"
           />
 
@@ -99,10 +104,11 @@ export default function Home() {
               Her approach is warm, collaborative, and tailored to each individual.
             </p>
 
-            <button className="mt-6 px-6 py-3 rounded-full font-medium tracking-wide bg-[#2E4057] text-white hover:scale-105 transition duration-300">
+            <button className="mt-6 px-6 py-3 rounded-full font-medium bg-[#2E4057] text-white hover:scale-105 transition">
               Learn More
             </button>
           </div>
+
         </div>
       </section>
 
@@ -112,7 +118,7 @@ export default function Home() {
           Ready to Start Your Healing Journey?
         </h2>
 
-        <button className="mt-6 px-8 py-3 rounded-full font-medium tracking-wide bg-white text-[#2E4057] hover:scale-105 transition duration-300">
+        <button className="mt-6 px-8 py-3 rounded-full font-medium bg-white text-[#2E4057] hover:scale-105 transition">
           Book a Session
         </button>
       </section>
@@ -128,9 +134,9 @@ export default function Home() {
         </p>
 
         <div className="grid md:grid-cols-3 gap-6 mt-10">
-          <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" className="rounded-xl h-64 w-full object-cover"/>
-          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c" className="rounded-xl h-64 w-full object-cover"/>
-          <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae" className="rounded-xl h-64 w-full object-cover"/>
+          <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" className="rounded-xl h-64 w-full object-cover hover:scale-105 transition"/>
+          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c" className="rounded-xl h-64 w-full object-cover hover:scale-105 transition"/>
+          <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae" className="rounded-xl h-64 w-full object-cover hover:scale-105 transition"/>
         </div>
       </section>
 
