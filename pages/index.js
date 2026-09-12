@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     document.documentElement.style.scrollBehavior = "smooth";
@@ -32,7 +33,6 @@ export default function Home() {
           alt="therapy"
           className="absolute inset-0 w-full h-full object-cover"
         />
-
         <div className="absolute inset-0 bg-[#2E4057]/70"></div>
 
         <div className="relative z-10 max-w-2xl px-6 animate-fadeIn">
@@ -40,44 +40,33 @@ export default function Home() {
             Compassionate Therapy for Anxiety & Relationships
           </h1>
 
-          <p className="mt-6 text-lg text-gray-200 leading-relaxed">
+          <p className="mt-6 text-lg text-gray-200">
             Work with Dr. Maya Reynolds to build clarity, emotional strength,
-            and healthier connections in a safe, supportive space.
+            and healthier connections.
           </p>
 
-          <button className="mt-8 px-8 py-3 rounded-full font-medium tracking-wide bg-white text-[#2E4057] hover:scale-105 transition duration-300">
+          <button className="mt-8 px-8 py-3 rounded-full bg-white text-[#2E4057] hover:scale-105 transition">
             Book a Consultation
           </button>
         </div>
       </section>
 
       {/* Services */}
-      <section className="py-24 md:py-28 px-6 bg-[#F6F1EB] text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-[#2E4057]">
+      <section className="py-24 px-6 text-center">
+        <h2 className="text-3xl font-bold text-[#2E4057]">
           How I Can Help
         </h2>
 
         <div className="grid md:grid-cols-3 gap-8 mt-12 max-w-6xl mx-auto">
           {[
-            {
-              title: "Anxiety Therapy",
-              desc: "Learn to manage overwhelming thoughts and regain control of your life."
-            },
-            {
-              title: "Relationship Counseling",
-              desc: "Build stronger, healthier connections with better communication."
-            },
-            {
-              title: "Trauma Support",
-              desc: "Heal from past experiences in a safe and supportive environment."
-            }
+            "Anxiety Therapy",
+            "Relationship Counseling",
+            "Trauma Support",
           ].map((item, i) => (
-            <div key={i} className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300 hover:-translate-y-2">
-              <h3 className="text-xl font-semibold text-[#2E4057]">
-                {item.title}
-              </h3>
-              <p className="mt-3 text-gray-600 leading-relaxed text-[17px]">
-                {item.desc}
+            <div key={i} className="bg-white p-8 rounded-2xl shadow hover:-translate-y-2 transition">
+              <h3 className="text-xl font-semibold">{item}</h3>
+              <p className="mt-3 text-gray-600">
+                Personalized support to help you grow and heal.
               </p>
             </div>
           ))}
@@ -85,64 +74,72 @@ export default function Home() {
       </section>
 
       {/* About */}
-      <section className="py-24 md:py-28 px-6 bg-white">
+      <section className="py-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-
           <img
             src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e"
-            alt="therapist"
-            className="rounded-2xl h-[420px] w-full object-cover shadow-md"
+            className="rounded-2xl h-[420px] w-full object-cover"
           />
 
           <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#2E4057]">
+            <h2 className="text-3xl font-bold text-[#2E4057]">
               Meet Dr. Maya Reynolds
             </h2>
-
-            <p className="mt-6 text-gray-600 leading-relaxed text-[17px]">
-              Dr. Maya specializes in anxiety, relationships, and trauma-informed care.
-              Her approach is warm, collaborative, and tailored to each individual.
+            <p className="mt-6 text-gray-600">
+              Specialized in anxiety, relationships, and trauma care.
             </p>
-
-            <button className="mt-6 px-6 py-3 rounded-full font-medium bg-[#2E4057] text-white hover:scale-105 transition">
-              Learn More
-            </button>
           </div>
-
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="py-24 md:py-28 px-6 bg-[#2E4057] text-white text-center">
-        <h2 className="text-3xl md:text-4xl font-bold">
-          Ready to Start Your Healing Journey?
+      {/* Contact Form (NEW 🔥) */}
+      <section className="py-24 px-6 text-center">
+        <h2 className="text-3xl font-bold text-[#2E4057]">
+          Get In Touch
         </h2>
 
-        <button className="mt-6 px-8 py-3 rounded-full font-medium bg-white text-[#2E4057] hover:scale-105 transition">
-          Book a Session
-        </button>
-      </section>
+        {!submitted ? (
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              setSubmitted(true);
+            }}
+            className="max-w-xl mx-auto mt-10 space-y-4"
+          >
+            <input
+              type="text"
+              placeholder="Your Name"
+              required
+              className="w-full p-3 border rounded-lg"
+            />
 
-      {/* Office */}
-      <section className="py-24 md:py-28 px-6 bg-white text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-[#2E4057]">
-          A Safe Space for Healing
-        </h2>
+            <input
+              type="email"
+              placeholder="Your Email"
+              required
+              className="w-full p-3 border rounded-lg"
+            />
 
-        <p className="mt-4 text-gray-600 max-w-2xl mx-auto leading-relaxed text-[17px]">
-          Our office is designed to help you feel calm, supported, and at ease from the moment you walk in.
-        </p>
+            <textarea
+              placeholder="Your Message"
+              required
+              className="w-full p-3 border rounded-lg h-32"
+            ></textarea>
 
-        <div className="grid md:grid-cols-3 gap-6 mt-10">
-          <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511" className="rounded-xl h-64 w-full object-cover hover:scale-105 transition"/>
-          <img src="https://images.unsplash.com/photo-1497366216548-37526070297c" className="rounded-xl h-64 w-full object-cover hover:scale-105 transition"/>
-          <img src="https://images.unsplash.com/photo-1507089947368-19c1da9775ae" className="rounded-xl h-64 w-full object-cover hover:scale-105 transition"/>
-        </div>
+            <button className="w-full bg-[#2E4057] text-white py-3 rounded-lg hover:scale-105 transition">
+              Send Message
+            </button>
+          </form>
+        ) : (
+          <p className="mt-6 text-green-600 font-semibold">
+            ✅ Message sent successfully!
+          </p>
+        )}
       </section>
 
       {/* Footer */}
       <footer className="py-10 bg-[#2E4057] text-white text-center">
-        <p>© 2026 Dr. Maya Reynolds. All rights reserved.</p>
+        <p>© 2026 Dr. Maya Reynolds</p>
       </footer>
 
     </div>
